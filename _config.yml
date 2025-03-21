@@ -1,0 +1,17 @@
+# Site settings
+title: My Blog
+description: A simple blog built with Jekyll and GitHub Pages
+url: "https://sambilheimer.github.io" # Replace with your username
+baseurl: "/blog" # Leave empty for username.github.io sites, use "/blog" for project sites
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+highlighter: rouge
+
+# Exclude files from processing
+exclude:
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
