@@ -2,12 +2,18 @@
 title: My Blog
 description: A simple blog built with Jekyll and GitHub Pages
 url: "https://sambilheimer.github.io" # Replace with your username
-baseurl: "/blog" # Leave empty for username.github.io sites, use "/blog" for project sites
+baseurl: "" # Leave empty for username.github.io sites, use "/blog" for project sites
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 permalink: /:year/:month/:day/:title/
 highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
 
 # Exclude files from processing
 exclude:
