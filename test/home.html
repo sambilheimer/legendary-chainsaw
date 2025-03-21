@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<div class="home">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ site.title }}</h1>
+      <p class="hero-description">
+        {{ page.hero_description | default: site.description }}
+      </p>
+      {% if page.hero_button_text and page.hero_button_link %}
+      <a
+        href="{{ page.hero_button_link | relative_url }}"
+        class="button primary"
+        >{{ page.hero_button_text }}</a
+      >
+      {% endif %}
+    </div>
+  </section>
+
+  {% if site.posts.size > 0 %}
+  <section class="featured-posts">
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="post-grid">
+      {% for post in site.posts limit:3 %}
+      <article class="post-card">
+        {% if post.featured_image %}
+        <div class="post-card-image">
+          <a href="{{ post.url | relative_url }}">
+            <img
+              src="{{ site.baseurl }}{{ post.featured_image }}"
+              alt="{{ post.title }}"
+            />
+          </a>
+        </div>
+        {% endif %}
+        <div class="post-card-content">
+          <header class="post-card-header">
+            {% if post.categories.size > 0 %}
+            <div class="post-card-tags">
+              {% for category in post.categories limit:1 %}
+              <span class="post-tag">{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <h3 class="post-card-title">
+              <a class="post-card-link" href="{{ post.url | relative_url }}"
+                >{{ post.title }}</a
+              >
+            </h3>
+          </header>
+          <div class="post-card-excerpt">
+            {% if post.description %}
+            <p>{{ post.description }}</p>
+            {% else %}
+            <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
+          </div>
+          <footer class="post-card-meta">
+            <span class="post-card-date"
+              >{{ post.date | date: "%b %-d, %Y" }}</span
+            >
+            {% if post.author %}
+            <span class="post-card-author">by {{ post.author }}</span>
+            {% endif %}
+          </footer>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="view-all-posts">
+      <a href="{{ site.baseurl }}/archive/" class="button secondary"
+        >View All Posts</a
+      >
+    </div>
+  </section>
+  {% endif %} {% if page.content != "" %}
+  <section class="home-content">{{ content }}</section>
+  {% endif %}
+</div>
