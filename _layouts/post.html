@@ -36,9 +36,14 @@ layout: default
       </span>
       {% endif %}
 
-      <span class="post-reading-time">
-        <i class="far fa-clock"></i> {% include reading_time.html %}
-      </span>
+      <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+      {% if page.author %}
+      <span class="post-author">by {{ page.author }}</span>
+      {% endif %} {% if page.reading_time %}
+      <span class="post-reading-time">{{ page.reading_time }} min read</span>
+      {% endif %}
     </div>
   </header>
 
