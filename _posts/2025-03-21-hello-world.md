@@ -8,7 +8,7 @@ tags: [intro, jekyll]
 
 # Hello, World!
 
-Welcome to my new blog! This is my first post, created with Jekyll and hosted on GitHub Pages.
+Welcome to my new blog! This is my first post, created with Jekyll and hosted on GitHub Pages. Wow.
 
 ## Why I Started This Blog
 
