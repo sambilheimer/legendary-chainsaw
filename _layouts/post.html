@@ -1,94 +1,174 @@
 ---
-layout: compress
+layout: default
 ---
 
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <span class="post-date">
+        <i class="far fa-calendar-alt"></i> {{ page.date | date: "%B %-d, %Y" }}
+      </span>
 
-{% include header.html %}
-
-<body data-theme="{{ site.mode }}" class="notransition">
-
-  <script>
-    const body = document.body;
-    const data = body.getAttribute("data-theme");
-
-    const initTheme = (state) => {
-      if (state === "dark") {
-        body.setAttribute("data-theme", "dark");
-      } else if (state === "light") {
-        body.removeAttribute("data-theme");
-      } else {
-        localStorage.setItem("theme", data);
-      }
-    };
- 
-    initTheme(localStorage.getItem("theme"));
-    
-    setTimeout(() => body.classList.remove("notransition"), 75);
-  </script>
-
-  {% include navbar.html %}
-  <div class="wrapper post">
-    <main class="page-content" aria-label="Content">
-      <article itemscope itemtype="https://schema.org/BlogPosting">
-
-        <header class="header">
-          {% if page.tags and page.tags != empty %}
-          <div class="tags">
-            {% assign tags = page.tags %}
-            <span itemprop="keywords">
-              {% for tag in tags %}
-              <a class="tag"
-                href="/tags/#{{tag | downcase | slugify}}">{{tag | upcase }}</a>{% unless forloop.last %},{% endunless %}
-              {% endfor %}
-            </span>
-          </div>
-          {% endif %}
-          <h1 class="header-title" itemprop="headline">{{ page.title | escape }}</h1>
-          {% if page.date %}
-          <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-              {{ page.date | date: "%b %d, %Y" }}
-            </time>
-            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <span itemprop="name">{{ site.author.name }}</span>
-            </span>
-            <time hidden datetime="{{ page.modified | date_to_xmlschema }}" itemprop="dateModified">
-              {{ page.date | date: "%b %d, %Y" }}
-            </time>
-            <span hidden itemprop="publisher" itemtype="Person">{{ site.author.name }}</span>
-            <span hidden itemprop="image">{{ page.image }}</span>
-            <span hidden itemprop="mainEntityOfPage">{{ page.excerpt }}</span>
-          </div>
-          {% endif %}
-        </header>
-
-        <div class="page-content" itemprop="articleBody">
-          {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=1 h_max=4 %}
-          {% if page.tweet %}
-          <p>Comments this article on 
-            <a href="https://twitter.com/{{site.twitter}}/status/{{page.tweet}}">Twitter</a>.
-          </p>
-          {% endif %}
-        </div>
-      </article>
-    
-      {% if page.comments %}
-        {% include comments.html %}
+      {% if page.last_modified_at %}
+      <span class="post-updated">
+        <i class="fas fa-sync-alt"></i> Updated: {{ page.last_modified_at |
+        date: "%B %-d, %Y" }}
+      </span>
+      {% endif %} {% if page.author %}
+      <span class="post-author">
+        <i class="far fa-user"></i> {{ page.author }}
+      </span>
+      {% endif %} {% if page.categories.size > 0 %}
+      <span class="post-categories">
+        <i class="far fa-folder-open"></i>
+        {% for category in page.categories %}
+        <a href="{{ site.baseurl }}/categories/{{ category | slugify }}/"
+          >{{ category }}</a
+        >{% unless forloop.last %}, {% endunless %} {% endfor %}
+      </span>
+      {% endif %} {% if page.tags.size > 0 %}
+      <span class="post-tags">
+        <i class="fas fa-tags"></i>
+        {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/">#{{ tag }}</a>{%
+        unless forloop.last %} {% endunless %} {% endfor %}
+      </span>
       {% endif %}
 
-    </main>
+      <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+      {% if page.author %}
+      <span class="post-author">by {{ page.author }}</span>
+      {% endif %} {% if page.reading_time %}
+      <span class="post-reading-time">{{ page.reading_time }} min read</span>
+      {% endif %}
+    </div>
+  </header>
 
-    {% if page.modified %}
-      <small class="post-updated-at">updated_at {{page.modified | date: "%d-%m-%Y"}}</small>
+  {% if page.image %}
+  <div class="post-featured-image">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+    {% if page.image_caption %}
+    <figcaption class="image-caption">{{ page.image_caption }}</figcaption>
     {% endif %}
-    {% if page.next or page.previous %}
-      {% include navigation.html %}
-    {% endif %}
-
-    {% include footer.html %}
   </div>
-</body>
+  {% endif %}
 
-</html>
+  <div class="post-content">{{ content }}</div>
+
+  <footer class="post-footer">
+    {% if site.author_bio %}
+    <div class="author-bio">
+      <div class="author-avatar">
+        <img
+          src="{{ site.author_avatar | default: site.baseurl | append: '/assets/images/avatar.jpg' }}"
+          alt="{{ site.author }}"
+        />
+      </div>
+      <div class="author-info">
+        <h3 class="author-name">{{ site.author }}</h3>
+        <div class="author-description">{{ site.author_bio }}</div>
+        {% if site.author_links %}
+        <div class="author-links">
+          {% if site.twitter_username %}
+          <a
+            href="https://twitter.com/{{ site.twitter_username }}"
+            target="_blank"
+            aria-label="Twitter"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          {% endif %} {% if site.github_username %}
+          <a
+            href="https://github.com/{{ site.github_username }}"
+            target="_blank"
+            aria-label="GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="post-navigation">
+      <div class="post-navigation-links">
+        {% if page.previous.url %}
+        <a class="prev-post" href="{{ page.previous.url | relative_url }}">
+          <span class="nav-label"
+            ><i class="fas fa-arrow-left"></i> Previous Post</span
+          >
+          <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+        {% endif %} {% if page.next.url %}
+        <a class="next-post" href="{{ page.next.url | relative_url }}">
+          <span class="nav-label"
+            >Next Post <i class="fas fa-arrow-right"></i
+          ></span>
+          <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if site.disqus_shortname and jekyll.environment == "production" %}
+    <div class="post-comments">
+      <h3 class="comments-title">Comments</h3>
+      {% include disqus.html %}
+    </div>
+    {% endif %}
+
+    <div class="post-share">
+      <h3 class="share-title">Share this post</h3>
+      <div class="share-buttons">
+        <a
+          href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}"
+          target="_blank"
+          class="share-twitter"
+          ><i class="fab fa-twitter"></i> Twitter</a
+        >
+
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}"
+          target="_blank"
+          class="share-facebook"
+          ><i class="fab fa-facebook-f"></i> Facebook</a
+        >
+
+        <a
+          href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url | url_encode }}&title={{ page.title | url_encode }}"
+          target="_blank"
+          class="share-linkedin"
+          ><i class="fab fa-linkedin-in"></i> LinkedIn</a
+        >
+      </div>
+    </div>
+  </footer>
+</article>
+
+{% if site.related_posts_enabled %}
+<section class="related-posts">
+  <h2 class="section-title">You might also enjoy</h2>
+  <div class="related-posts-grid">
+    {% for post in site.related_posts limit:3 %}
+    <div class="related-post-card">
+      {% if post.image %}
+      <a href="{{ post.url | relative_url }}" class="related-post-image">
+        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+      </a>
+      {% endif %}
+      <div class="related-post-content">
+        <h3 class="related-post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        <span class="related-post-date"
+          >{{ post.date | date: "%B %-d, %Y" }}</span
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
