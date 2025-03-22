@@ -1,23 +1,65 @@
 # Site settings
-title: My Blog
-description: A simple blog built with Jekyll and GitHub Pages
-url: "https://sambilheimer.github.io" # Replace with your username
-baseurl: "/legendary-chainsaw" # Leave empty for username.github.io sites, use "/blog" for project sites
+title: Margin Notes
+description: A blog
+url: "https://sambilheimer.github.io" 
+baseurl: "/legendary-chainsaw" 
+
+# Collection setting
+collections:
+  posts:
+    output: true
 
 # Build settings
+# Markdown settings
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-permalink: /:year/:month/:day/:title/
 highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+
+permalink: /:title/
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-postfiles
 
-# Exclude files from processing
+sass:
+  style: compressed
+
+include:
+  - _redirects
+  - .htaccess
+
 exclude:
-  - .gitignore
-  - README.md
+  - CNAME
   - Gemfile
   - Gemfile.lock
+  - LICENSE
+  - CHANGELOG.md
+  - README.md
+  - node_modules
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - lighthouse.png
+  - klise-*.gem
+  - klise.gemspec
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: post
+      comments: false
+# Jekyll Compose default front matter
+jekyll_compose:
+  post_default_front_matter:
+    modified:
+    tags: []
+    description:
+  draft_default_front_matter:
+    modified:
+    tags: []
+    description:
+
+# Homepage limit posts
+number_of_posts: 5
