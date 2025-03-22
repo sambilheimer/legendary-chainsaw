@@ -1,8 +1,8 @@
 # Site settings
-title: My Blog
-description: A simple blog built with Jekyll and GitHub Pages
-url: "https://sambilheimer.github.io" # Replace with your username
-baseurl: "/legendary-chainsaw" # Leave empty for username.github.io sites, use "/blog" for project sites
+title: Margin Notes
+description: A blog
+url: "https://sambilheimer.github.io" 
+baseurl: "/legendary-chainsaw" 
 
 # Collection setting
 collections:
