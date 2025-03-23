@@ -4,100 +4,78 @@ layout: default
 
 <div class="home">
   <section class="hero">
-    <h1 class="hero-title">
-      {{ site.hero_title | default: "Welcome to My Writing Space" }}
-    </h1>
-    <p class="hero-subtitle">
-      {{ site.hero_subtitle | default: "Thoughts, stories, and ideas" }}
-    </p>
-  </section>
-
-  <section class="featured-posts">
-    {% if site.featured_post %}
-    <div class="featured-post">
-      {% assign featured = site.posts | where: "slug", site.featured_post |
-      first %} {% if featured %}
-      <span class="featured-label">Featured</span>
-      <h2>
-        <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date">{{ featured.date | date: "%B %-d, %Y" }}</span>
-        {% if featured.categories.size > 0 %}
-        <span class="post-categories">
-          in {% for category in featured.categories %}
-          <a href="{{ site.baseurl }}/categories/{{ category | slugify }}/"
-            >{{ category }}</a
-          >{% unless forloop.last %}, {% endunless %} {% endfor %}
-        </span>
-        {% endif %}
-      </div>
-      <div class="post-excerpt">
-        {{ featured.excerpt }}
-        <a href="{{ featured.url | relative_url }}" class="read-more"
-          >Continue reading</a
-        >
-      </div>
+    <div class="hero-content">
+      <h1 class="hero-title">{{ site.title }}</h1>
+      <p class="hero-description">
+        {{ page.hero_description | default: site.description }}
+      </p>
+      {% if page.hero_button_text and page.hero_button_link %}
+      <a
+        href="{{ page.hero_button_link | relative_url }}"
+        class="button primary"
+        >{{ page.hero_button_text }}</a
+      >
       {% endif %}
     </div>
-    {% endif %}
   </section>
 
-  <section class="recent-posts">
-    <h2 class="section-title">Recent Posts</h2>
+  {% if site.posts.size > 0 %}
+  <section class="featured-posts">
+    <h2 class="section-title">Latest Posts</h2>
     <div class="post-grid">
-      {% for post in site.posts limit:6 %}
+      {% for post in site.posts limit:3 %}
       <article class="post-card">
-        {% if post.image %}
-        <div class="post-image">
+        {% if post.featured_image %}
+        <div class="post-card-image">
           <a href="{{ post.url | relative_url }}">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+            <img
+              src="{{ site.baseurl }}{{ post.featured_image }}"
+              alt="{{ post.title }}"
+            />
           </a>
         </div>
         {% endif %}
-        <div class="post-content">
-          <h3 class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h3>
-          <div class="post-meta">
-            <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <div class="post-card-content">
+          <header class="post-card-header">
+            {% if post.categories.size > 0 %}
+            <div class="post-card-tags">
+              {% for category in post.categories limit:1 %}
+              <span class="post-tag">{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <h3 class="post-card-title">
+              <a class="post-card-link" href="{{ post.url | relative_url }}"
+                >{{ post.title }}</a
+              >
+            </h3>
+          </header>
+          <div class="post-card-excerpt">
+            {% if post.description %}
+            <p>{{ post.description }}</p>
+            {% else %}
+            <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
           </div>
-          <div class="post-excerpt">
-            {{ post.excerpt | strip_html | truncatewords: 25 }}
-          </div>
-          <a href="{{ post.url | relative_url }}" class="read-more"
-            >Read more</a
-          >
+          <footer class="post-card-meta">
+            <span class="post-card-date"
+              >{{ post.date | date: "%b %-d, %Y" }}</span
+            >
+            {% if post.author %}
+            <span class="post-card-author">by {{ post.author }}</span>
+            {% endif %}
+          </footer>
         </div>
       </article>
       {% endfor %}
     </div>
-
-    <div class="see-all-posts">
-      <a href="{{ site.baseurl }}/archive/" class="button">View all posts</a>
+    <div class="view-all-posts">
+      <a href="{{ site.baseurl }}/archive/" class="button secondary"
+        >View All Posts</a
+      >
     </div>
   </section>
-
-  {% if site.newsletter %}
-  <section class="newsletter">
-    <h2 class="section-title">
-      {{ site.newsletter_title | default: "Subscribe to my newsletter" }}
-    </h2>
-    <p>
-      {{ site.newsletter_description | default: "Get the latest posts delivered
-      right to your inbox." }}
-    </p>
-    <form action="{{ site.newsletter }}" method="post" target="_blank">
-      <div class="form-group">
-        <input
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          required
-        />
-        <button type="submit" class="button">Subscribe</button>
-      </div>
-    </form>
-  </section>
+  {% endif %} {% if page.content != "" %}
+  <section class="home-content">{{ content }}</section>
   {% endif %}
 </div>
