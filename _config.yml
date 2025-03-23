@@ -1,8 +1,9 @@
 # Site settings
 title: Margin Notes
 description: A blog
-url: "https://sambilheimer.github.io" 
-baseurl: "/legendary-chainsaw" 
+url: "https://sambilheimer.github.io"
+baseurl: "/legendary-chainsaw"
+mode: dark
 
 # Collection setting
 collections:
