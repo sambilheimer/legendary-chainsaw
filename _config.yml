@@ -23,6 +23,18 @@ plugins:
   - jekyll-sitemap
   - jekyll-postfiles
 
+# Profile settings
+author:
+  name: Sam # author name
+  # bio: >- # tell to the world
+  #  a bio goes here
+  username: Haiku # general username
+  github: github_username # github username
+  twitter: twitter_username # twitter username
+  facebook: facebook_username # facebook username
+  email: your-email@email.com # email adress
+  avatar: /assets/images/water_v1.webp # change with your own avatar
+
 sass:
   style: compressed
 
