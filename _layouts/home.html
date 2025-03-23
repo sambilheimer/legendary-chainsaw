@@ -1,8 +1,30 @@
 ---
 layout: default
+home: true
 ---
 
-<div class="home">
+<h3 class="posts-item-note" aria-label="Recent Posts">Recent Posts</h3>
+{%- for post in site.posts limit: site.number_of_posts -%}
+<article class="post-item">
+  <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
+  <h4 class="post-item-title">
+    <a href="{{ post.url }}">{{ post.title | escape }}</a>
+  </h4>
+</article>
+{%- endfor -%}
+
+<!-- 
+<div class="author">
+  <img
+    class="author-avatar"
+    src="{{ site.author.avatar }}"
+    alt="{{ site.author.username }}"
+  />
+  <h2 class="author-name">{{ site.author.name }}</h2>
+  <p class="author-bio">{{ site.author.bio }}</p>
+</div> -->
+
+<!-- <div class="home">
   <section class="hero">
     <div class="hero-content">
       <h1 class="hero-title">{{ site.title }}</h1>
@@ -78,4 +100,4 @@ layout: default
   {% endif %} {% if page.content != "" %}
   <section class="home-content">{{ content }}</section>
   {% endif %}
-</div>
+</div> -->
