@@ -247,7 +247,9 @@
         {%- else -%}
         <a class="menu-link" href="{{ menu.url }}">{{ menu.title }}</a>
         {%- endif -%} {%- endif -%} {%- endfor -%} {%- else -%}
-        <a class="menu-link {% if url == '/' %}active{% endif %}" href="/"
+        <a
+          class="menu-link {% if url == '/' %}active{% endif %}"
+          href="{{ site.baseurl }}"
           >home</a
         >
         <a
