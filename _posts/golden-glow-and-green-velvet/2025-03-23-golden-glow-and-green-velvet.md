@@ -5,11 +5,11 @@ date: 2025-03-23
 tags: [flash fiction, prose poetry, sci-fi, fantasy]
 ---
 
-Time slows in moments and reinvigorates in others, racing and running and feeling wind upon cheeks. Eyes watering from the air pressure and a tear suspended in air parallel to the ground. A rush in the brain as blood returns, and sense. Wrapped in a cable while the white glow of the TV is orange and gold and green velvet that I kiss and keep close to my lips until it scratch, and I don't even open the book anymore to see what kind of thing could have ever hidden inside of it.
+Time slows in moments and reinvigorates in others, racing and running and feeling wind upon cheeks. Eyes watering from the air pressure and a tear suspended in air, parallel to the ground. A rush in the brain as blood returns, and sense. Wrapped in a cable while the white glow of the TV is orange and gold and green velvet that I kiss and keep close to my lips until it scratch, and I don't even open the book anymore to see what kind of thing could have ever hidden inside of it.
 
 A red eye on the side of a turned-over tree watches me walk past, trying to ignore it. An iron-barred hemisphere contains myself and my child and my wife, and from a distance we look like some sort of mask and a woman's face without nose or lips. It speaks, and I do not understand what it wants to say.
 
-What captain is so strong and wise as to be in charge of this broken vessel? Wooden planks crack and rot and soak with sea water empty of salt and only just maybe barely enough to keep us floating and bobbing down the river.
+What captain is so strong and wise as to be in charge of this broken vessel? Wooden planks crack and rot and soak with sea water empty of salt and only just maybe barely enough to keep us afloat, bobbing down the river.
 
 I have not been to Eden, but I have eaten the fruit found on the ground beneath the 24-hour pharmacy window. Tell me what I want to hear, and I will never leave.
 
