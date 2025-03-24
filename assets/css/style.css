@@ -649,7 +649,7 @@ body {
   color: #434648;
   background-color: #fff;
   /* font: 400 16px/1.85 "Inter", sans-serif; */
-  font-family: "Space Mono", monospace;
+  font-family: "Lora", monospace;
   font-weight: 400;
   font-style: normal;
   -webkit-text-size-adjust: 100%;
@@ -668,7 +668,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lora", serif;
+  font-family: "Space Mono", serif;
 }
 
 h1,
